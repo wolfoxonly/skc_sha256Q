@@ -1133,7 +1133,7 @@ bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex, const Consensus
 CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
 {
 	if (nHeight > 1) return 0;//coingo.vip
-    if (nHeight == 1) return COIN * 3650*10000*10000;
+    if (nHeight == 1) return COIN * 1000*10000*10000;//coingo.vip
 	
     int halvings = nHeight / consensusParams.nSubsidyHalvingInterval;
     // Force block reward to zero when right shift is undefined.
