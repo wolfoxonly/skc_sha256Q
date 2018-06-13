@@ -8,7 +8,7 @@ define(_CLIENT_VERSION_IS_RELEASE, true) # just SET this flag ONLY in TAGGED rel
 define(_COPYRIGHT_YEAR, 2018)
 define(_COPYRIGHT_HOLDERS,[The %s developers])
 define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[SinkyCoin]])
-AC_INIT([SinkyCoin Core],[_CLIENT_VERSION_MAJOR._CLIENT_VERSION_MINOR._CLIENT_VERSION_REVISION],[https://github.com/bitbaba/sinkycoin/issues],[sinkycoin],[https://sinkycoin.bitbaba.com/])
+AC_INIT([SinkyCoin Core],[_CLIENT_VERSION_MAJOR._CLIENT_VERSION_MINOR._CLIENT_VERSION_REVISION],[https://github.com/bitbaba/bitgold/issues],[sinkycoin],[https://bitgold.bitbaba.com/])
 AC_CONFIG_SRCDIR([src/validation.cpp])
 AC_CONFIG_HEADERS([src/config/bitcoin-config.h])
 AC_CONFIG_AUX_DIR([build-aux])
