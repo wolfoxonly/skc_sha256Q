@@ -101,7 +101,7 @@ static QString GetLangTerritory()
     QSettings settings;
     // Get desired locale (e.g. "de_DE")
     // 1) System default language
-    QString lang_territory = QLocale::system().name();
+    QString lang_territory = QLocale::system().name();//coingo.vip
     // 2) Language from QSettings
     QString lang_territory_qsettings = settings.value("language", "").toString();
     if(!lang_territory_qsettings.isEmpty())
@@ -507,7 +507,7 @@ void BitcoinApplication::initializeResult(bool success)
 
 #ifdef ENABLE_WALLET
         // Now that initialization/startup is done, process any command-line
-        // sinkycoin: URIs or payment requests:
+        // usdkhan: URIs or payment requests:
         connect(paymentServer, SIGNAL(receivedPaymentRequest(SendCoinsRecipient)),
                          window, SLOT(handlePaymentRequest(SendCoinsRecipient)));
         connect(window, SIGNAL(receivedURI(QString)),
@@ -669,7 +669,7 @@ int main(int argc, char *argv[])
         exit(EXIT_SUCCESS);
 
     // Start up the payment server early, too, so impatient users that click on
-    // sinkycoin: links repeatedly have their payment requests routed to this process:
+    // usdkhan: links repeatedly have their payment requests routed to this process:
     app.createPaymentServer();
 #endif
 

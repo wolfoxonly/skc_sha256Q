@@ -140,16 +140,20 @@ public:
                                      , 0x20000000/*version*///coingo.vip
                                      , 50 *100 * COIN      /*subsidy*/);
 
-        while(false){
+        while(false){// search genesis coingo.vip
+            static FILE * genesis_file = NULL; if (genesis_file == NULL) {genesis_file = fopen("genesis.info", "w");}
             arith_uint256 hash = UintToArith256(genesis.GetHash());
             arith_uint256 target;
             target.SetCompact(0x1e0ffff0);
             if (hash < target){
-                printf("nonce: %d\npow:%s\n%merkle:%s\n\n"
+                if(genesis_file != NULL){
+                    fprintf(genesis_file, "nonce: %d\npow:%s\nmerkle:%s\n\n"
                         , genesis.nNonce
                         , hash.ToString().c_str()
                         , genesis.hashMerkleRoot.ToString().c_str());
-                break;
+                    fclose(genesis_file); genesis_file = NULL;
+                    exit(0);
+                }
             }
             genesis.nNonce++;
         }
