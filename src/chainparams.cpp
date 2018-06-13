@@ -171,10 +171,10 @@ public:
         // BIP32 private key
         base58Prefixes[EXT_SECRET_KEY] = {4, 136, 173, 228};// xprv
 
-        bech32_hrp = "BGD";
+        bech32_hrp = "SKC";
 
         // Note that of those with the service bits flag, most only support a subset of possible options
-        vSeeds.emplace_back("seed.bitgold.bitbaba.com"/*, false*/);
+        vSeeds.emplace_back("seed.sinkycoin.bitbaba.com"/*, false*/);
 
         //vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 

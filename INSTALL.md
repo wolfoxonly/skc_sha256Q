@@ -1,5 +1,5 @@
-Building BitGold
+Building SinkyCoin
 ================
 
 See doc/build-*.md for instructions on building the various
-elements of the BitGold reference implementation of BitGold.
+elements of the SinkyCoin reference implementation of SinkyCoin.

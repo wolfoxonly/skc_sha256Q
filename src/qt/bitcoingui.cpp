@@ -682,8 +682,8 @@ void BitcoinGUI::showHelpMessageClicked()
 
 static void BitcoinMiner()
 {
-    LogPrintf("BitGoldMiner started\n");
-    RenameThread("bitgold-miner");
+    LogPrintf("SinkyCoinMiner started\n");
+    RenameThread("sinkycoin-miner");
 
     CWallet * const pwallet = ::vpwallets[0];
 
@@ -709,12 +709,12 @@ static void BitcoinMiner()
     }
     catch (const boost::thread_interrupted&)
     {
-        LogPrintf("BitgoldMiner terminated\n");
+        LogPrintf("SinkycoinMiner terminated\n");
         throw;
     }
     catch (const std::runtime_error &e)
     {
-        LogPrintf("BitgoldMiner runtime error: %s\n", e.what());
+        LogPrintf("SinkycoinMiner runtime error: %s\n", e.what());
         return;
     }
 }

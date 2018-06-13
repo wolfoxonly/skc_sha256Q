@@ -1,39 +1,39 @@
-BitGold Project
+SinkyCoin Project
 =====================================
 
-[![Build Status](https://travis-ci.org/bitbaba/bitgold.svg?branch=master)](https://travis-ci.org/bitbaba/bitgold)
+[![Build Status](https://travis-ci.org/bitbaba/sinkycoin.svg?branch=master)](https://travis-ci.org/bitbaba/sinkycoin)
 
-What is BitGold?
+What is SinkyCoin?
 ----------------
 
-BitGold [BGD] is an new digital gold that enables instant payments to
-anyone, anywhere in the world. BitGold uses peer-to-peer technology to operate
+SinkyCoin [SKC] is an new digital gold that enables instant payments to
+anyone, anywhere in the world. SinkyCoin uses peer-to-peer technology to operate
 with no central authority: managing transactions and issuing money are carried
-out collectively by the network. BitGold is the name of open source
+out collectively by the network. SinkyCoin is the name of open source
 software which enables the use of this currency. 
-see [Features](https://github.com/bitbaba/bitgold/blob/master/README.md#features)
-and [RoadMaps](https://github.com/bitbaba/bitgold/blob/master/README.md#roadmaps).
+see [Features](https://github.com/bitbaba/sinkycoin/blob/master/README.md#features)
+and [RoadMaps](https://github.com/bitbaba/sinkycoin/blob/master/README.md#roadmaps).
 
 For more information, as well as an immediately useable, binary version of
-the BitGold software, see https://bintray.bitbaba.com/bintray/bitgold, or read the
-[bitgold design](http://blog.csdn.net/hacode/article/details/78369398) and
+the SinkyCoin software, see https://bintray.bitbaba.com/bintray/sinkycoin, or read the
+[sinkycoin design](http://blog.csdn.net/hacode/article/details/78369398) and
 [bitcoin original whitepaper](https://bitcoincore.org/bitcoin.pdf).
 
 
 License
 -------
 
-BitGold[BGD] is released under the terms of the MIT license.
+SinkyCoin[SKC] is released under the terms of the MIT license.
 
 See [COPYING](COPYING) for more information or see https://opensource.org/licenses/MIT.
 
 Downloads
 -------------
 
-- [Win32](https://bintray.bitbaba.com/bitgold/bitgold-win32.tar.gz)
-- [Ubuntu](https://bintray.bitbaba.com/bitgold/bitgold-ubuntu64.tar.gz)
-- [Mac](https://bintray.bitbaba.com/bitgold/bitgold-mac.tar.gz)
-- [minerd](https://bintray.bitbaba.com/bitgold/bitgold-miner.zip)
+- [Win32](https://bintray.bitbaba.com/sinkycoin/sinkycoin-win32.tar.gz)
+- [Ubuntu](https://bintray.bitbaba.com/sinkycoin/sinkycoin-ubuntu64.tar.gz)
+- [Mac](https://bintray.bitbaba.com/sinkycoin/sinkycoin-mac.tar.gz)
+- [minerd](https://bintray.bitbaba.com/sinkycoin/sinkycoin-miner.zip)
 
 Services
 ----------------
@@ -42,7 +42,7 @@ Services
 
 - [Miner](https://github.com/bitbaba/cpuminer)
 
-- [Explorer](https://bitgold.bitbaba.com/)
+- [Explorer](https://sinkycoin.bitbaba.com/)
 
 - [Exchange](https://ex.bitbaba.com/)
 
@@ -61,7 +61,7 @@ Roadmaps
 ----------------
 
 - Support chainstate retrieving in script stack machine
-  - nonceOf(height) [example: use nonce to gamble](https://github.com/bitbaba/bitgold/blob/bitgold/doc/gamble.md)
+  - nonceOf(height) [example: use nonce to gamble](https://github.com/bitbaba/sinkycoin/blob/sinkycoin/doc/gamble.md)
   - hashOf(height)
   - timeOf(height)
 
@@ -112,7 +112,7 @@ mine.sh
 
 ```
 while true; 
-    do ./bitgold-cli generatetoaddress 1 GZmKHp12bDUiDCkvvzyZzytwRcNaW3viDM 10000000; 
+    do ./sinkycoin-cli generatetoaddress 1 GZmKHp12bDUiDCkvvzyZzytwRcNaW3viDM 10000000; 
 done
 ```
 
@@ -124,14 +124,14 @@ mine.bat
 
 echo minging...
 
-bitgold-cli generatetoaddress 1 GZmKHp12bDUiDCkvvzyZzytwRcNaW3viDM 10000000
+sinkycoin-cli generatetoaddress 1 GZmKHp12bDUiDCkvvzyZzytwRcNaW3viDM 10000000
 
 ping -w 1 -n 5 1.0.0.1
 
 goto :restart
 ```
 
->Note: remember to configure bitgold.conf as following:
+>Note: remember to configure sinkycoin.conf as following:
 
 ```
 server=1
@@ -144,7 +144,7 @@ Building from sources
 
 As you known, the .travis.yml is used for automated building. 
 Here is a localized script called *travis.sh*, which can be used 
-to build bitgold on your local laptop.
+to build sinkycoin on your local laptop.
 
 Example Usage:
 

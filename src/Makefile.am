@@ -65,15 +65,15 @@ TESTS =
 BENCHMARKS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += bitgoldd
+  bin_PROGRAMS += sinkycoind
 endif
 
 if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += bitgold-cli
+  bin_PROGRAMS += sinkycoin-cli
 endif
 
 .PHONY: FORCE check-symbols check-security
-# BitGold #
+# SinkyCoin #
 BITCOIN_CORE_H = \
   addrdb.h \
   addrman.h \
@@ -185,7 +185,7 @@ obj/build.h: FORCE
 	  "$(abs_top_srcdir)"
 libbitcoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between bitgoldd and bitgold-qt
+# server: shared between sinkycoind and sinkycoin-qt
 libbitcoin_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
 libbitcoin_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_server_a_SOURCES = \
@@ -238,7 +238,7 @@ libbitcoin_zmq_a_SOURCES = \
 endif
 
 
-# wallet: shared between bitgoldd and bitgold-qt, but only linked
+# wallet: shared between sinkycoind and sinkycoin-qt, but only linked
 # when wallet enabled
 libbitcoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
@@ -316,7 +316,7 @@ libbitcoin_consensus_a_SOURCES = \
   utilstrencodings.h \
   version.h
 
-# common: shared between bitgoldd, and bitgold-qt and non-server tools
+# common: shared between sinkycoind, and sinkycoin-qt and non-server tools
 libbitcoin_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_common_a_SOURCES = \
@@ -370,7 +370,7 @@ if GLIBC_BACK_COMPAT
 libbitcoin_util_a_SOURCES += compat/glibc_compat.cpp
 endif
 
-# cli: shared between bitcoin-cli and bitgold-qt
+# cli: shared between bitcoin-cli and sinkycoin-qt
 libbitcoin_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_cli_a_SOURCES = \
@@ -380,17 +380,17 @@ libbitcoin_cli_a_SOURCES = \
 nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
-# bitgoldd binary #
-bitgoldd_SOURCES = bitcoind.cpp
-bitgoldd_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-bitgoldd_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-bitgoldd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# sinkycoind binary #
+sinkycoind_SOURCES = bitcoind.cpp
+sinkycoind_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+sinkycoind_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+sinkycoind_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-bitgoldd_SOURCES += bitcoind-res.rc
+sinkycoind_SOURCES += bitcoind-res.rc
 endif
 
-bitgoldd_LDADD = \
+sinkycoind_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_WALLET) \
   $(LIBBITCOIN_COMMON) \
@@ -404,25 +404,25 @@ bitgoldd_LDADD = \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
-bitgoldd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
+sinkycoind_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
 
-# bitgold-cli binary #
-bitgold_cli_SOURCES = bitcoin-cli.cpp
-bitgold_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
-bitgold_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-bitgold_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# sinkycoin-cli binary #
+sinkycoin_cli_SOURCES = bitcoin-cli.cpp
+sinkycoin_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+sinkycoin_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+sinkycoin_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-bitgold_cli_SOURCES += bitcoin-cli-res.rc
+sinkycoin_cli_SOURCES += bitcoin-cli-res.rc
 endif
 
-bitgold_cli_LDADD = \
+sinkycoin_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_UTIL) \
   $(LIBBITCOIN_CRYPTO)
 
-bitgold_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
+sinkycoin_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
 # bitcoinconsensus library #

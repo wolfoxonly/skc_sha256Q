@@ -58,7 +58,7 @@ Bitcoin-Qt changes
   to current translations
 
 MacOSX:
-* OSX support for click-to-pay (bitgold:) links
+* OSX support for click-to-pay (sinkycoin:) links
 * Fix GUI disappearing problem on MacOSX (issue #1522)
 
 Linux/Unix:
