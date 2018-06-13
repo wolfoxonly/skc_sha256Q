@@ -158,8 +158,8 @@ public:
             genesis.nNonce++;
         }
 
-        assert(genesis.GetHash() == HASH_GENESIS);
-        assert(genesis.hashMerkleRoot == HASH_MERKLEROOT);
+  //      assert(genesis.GetHash() == HASH_GENESIS);//coingo.vip
+  //      assert(genesis.hashMerkleRoot == HASH_MERKLEROOT);
         consensus.hashGenesisBlock = genesis.GetHash();
 
         // Ref: https://en.bitcoin.it/wiki/List_of_address_prefixes
