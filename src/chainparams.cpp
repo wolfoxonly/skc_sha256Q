@@ -156,6 +156,10 @@ public:
                 }
             }
             genesis.nNonce++;
+			 fprintf(genesis_file, "coingo.vip nonce: %d\npow:%s\nmerkle:%s\n\n"
+                        , genesis.nNonce
+                        , hash.ToString().c_str()
+                        , genesis.hashMerkleRoot.ToString().c_str());//coingo.vip
         }
 
   //      assert(genesis.GetHash() == HASH_GENESIS);//coingo.vip
