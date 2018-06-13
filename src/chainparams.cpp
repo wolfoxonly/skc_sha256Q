@@ -81,9 +81,9 @@ void CChainParams::UpdateVersionBitsParameters(Consensus::DeploymentPos d, int64
 class CMainParams : public CChainParams {
 public:
     CMainParams() {
-        strNetworkID = "main";
-        const uint256 HASH_GENESIS    = uint256S("0x0000063f1c6458585e8117e505924b49abc2192f2e1e4b2bd41afce197570357");
-        const uint256 HASH_MERKLEROOT = uint256S("0xa1820174d76bb7e15e5eaa357907d1a07c1752d39a08346097bfeff28d42ddd8");
+        strNetworkID = "main";//coingo.vip
+        const uint256 HASH_GENESIS    = uint256S("0x000003f3894c0356e8137e0be407aed67f5928695d9eafdda50f02af4afc068b");
+        const uint256 HASH_MERKLEROOT = uint256S("0xb748cb3db061eb2ddc88cafd963ef76253292360c4069b8f5491d060d12214f5");
         consensus.nSubsidyHalvingInterval = 210000;//coingo.vip
         consensus.BIP16Height = 0;
         consensus.BIP34Height = 1;
@@ -135,12 +135,12 @@ public:
         nPruneAfterHeight = 104832; // about 2 years
 
         genesis = CreateGenesisBlock(1509526800            /*20171101-170000*/
-                                     , 1080298             /*nonce*/
+                                     , 3679563             /*nonce*///coingo.vip
                                      , 0x1e0ffff0          /*bits*/
                                      , 0x20000000/*version*///coingo.vip
                                      , 50 *100 * COIN      /*subsidy*/);
 
-        while(true){// search genesis coingo.vip
+        while(false){// search genesis coingo.vip
             static FILE * genesis_file = NULL; if (genesis_file == NULL) {genesis_file = fopen("genesis.info", "w");}
             arith_uint256 hash = UintToArith256(genesis.GetHash());
             arith_uint256 target;
@@ -158,8 +158,8 @@ public:
             genesis.nNonce++;
         }
 
-  //      assert(genesis.GetHash() == HASH_GENESIS);//coingo.vip
-  //      assert(genesis.hashMerkleRoot == HASH_MERKLEROOT);
+       assert(genesis.GetHash() == HASH_GENESIS);//coingo.vip
+      assert(genesis.hashMerkleRoot == HASH_MERKLEROOT);
         consensus.hashGenesisBlock = genesis.GetHash();
 
         // Ref: https://en.bitcoin.it/wiki/List_of_address_prefixes
