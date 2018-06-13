@@ -155,7 +155,7 @@ public:
                     exit(0);
                 }
             }
-
+            genesis.nNonce++;
         }
 
   //      assert(genesis.GetHash() == HASH_GENESIS);//coingo.vip
