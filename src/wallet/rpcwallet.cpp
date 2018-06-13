@@ -3657,7 +3657,7 @@ public:
         UniValue obj(UniValue::VOBJ);
         CScript subscript;
         if (pwallet && pwallet->GetCScript(scriptID, subscript)) {
-            ProcessSubScript(subscript, obj, true/*IsDeprecatedRPCEnabled("validateaddress")*/);
+            ProcessSubScript(subscript, obj, IsDeprecatedRPCEnabled("validateaddress"));//coingo.vip
         }
         return obj;
     }

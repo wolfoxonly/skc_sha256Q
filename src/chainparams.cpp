@@ -47,7 +47,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  *        hashPrevBlock=0x0000000000000000000000000000000000000000000000000000000000000000,
  *        hashMerkleRoot=0x5fd8818c00a3e171e4d43e7194dfbc8df60ded3416e79af1688b3e5448c8564a,
  *        nTime=1509526800,
- *        nBits=0x1e0ffff0,
+ *        nBits=0x1e0ffff0,//coingo.vip
  *        nNonce=1080298,
  *        vtx=1)
  * CTransaction(hash=824c6bf009, ver=1, vin.size=1, vout.size=1, nLockTime=0)
@@ -57,7 +57,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "DJIA 31/Nov/2017 closed at 23377.24";
+    const char* pszTimestamp = "SKC by coingo.vip 13/Jun/2018 closed at 6666";//coingo.vip
     const CScript genesisOutputScript = CScript() << ParseHex("044c761271482fb8245dfc2a73fe461cffb6e054aa2c8f76f97fc76b49f0a6a3ed0339689e02a5129608eb14cdb0674e9d5200077309bcbcf18bbd7a6eee16e356") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
@@ -84,7 +84,7 @@ public:
         strNetworkID = "main";
         const uint256 HASH_GENESIS    = uint256S("0x0000063f1c6458585e8117e505924b49abc2192f2e1e4b2bd41afce197570357");
         const uint256 HASH_MERKLEROOT = uint256S("0xa1820174d76bb7e15e5eaa357907d1a07c1752d39a08346097bfeff28d42ddd8");
-        consensus.nSubsidyHalvingInterval = 420000;
+        consensus.nSubsidyHalvingInterval = 210000;//coingo.vip
         consensus.BIP16Height = 0;
         consensus.BIP34Height = 1;
         consensus.NonceOfHeight = 1;        
@@ -94,12 +94,12 @@ public:
 
         consensus.powLimit = uint256S("0x00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 14 * 24 * 60 * 60; // two weeks
-        consensus.nPowTargetSpacing = 5 * 60;
+        consensus.nPowTargetSpacing = 2 * 60;//coingo.vip
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
 
-        consensus.nMinerConfirmationWindow = 4032; // nPowTargetTimespan / nPowTargetSpacing
-        consensus.nRuleChangeActivationThreshold = 3832; // ~95% of 4032
+        consensus.nMinerConfirmationWindow = 2016; // nPowTargetTimespan / nPowTargetSpacing coingo.vip
+        consensus.nRuleChangeActivationThreshold = 1916; // ~95% of 2016 coingo.vip
 
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 0; // January 1, 1970
@@ -131,29 +131,25 @@ public:
         pchMessageStart[1] = 0x1d;
         pchMessageStart[2] = 0xca;
         pchMessageStart[3] = 0xfe;
-        nDefaultPort = 30333;
+        nDefaultPort = 9955;//coingo.vip
         nPruneAfterHeight = 104832; // about 2 years
 
         genesis = CreateGenesisBlock(1509526800            /*20171101-170000*/
                                      , 1080298             /*nonce*/
                                      , 0x1e0ffff0          /*bits*/
-                                     , 0x20000000          /*version*/
-                                     , 50 * COIN           /*subsidy*/);
+                                     , VERSIONBITS_TOP_BITS/*version*/
+                                     , 50 *100 * COIN      /*subsidy*/);
 
-        while(false){// search genesis
-            static FILE * genesis_file = NULL; if (genesis_file == NULL) {genesis_file = fopen("genesis.info", "w");}
+        while(false){
             arith_uint256 hash = UintToArith256(genesis.GetHash());
             arith_uint256 target;
             target.SetCompact(0x1e0ffff0);
             if (hash < target){
-                if(genesis_file != NULL){
-                    fprintf(genesis_file, "nonce: %d\npow:%s\nmerkle:%s\n\n"
+                printf("nonce: %d\npow:%s\n%merkle:%s\n\n"
                         , genesis.nNonce
                         , hash.ToString().c_str()
                         , genesis.hashMerkleRoot.ToString().c_str());
-                    fclose(genesis_file); genesis_file = NULL;
-                    exit(0);
-                }
+                break;
             }
             genesis.nNonce++;
         }
@@ -163,8 +159,8 @@ public:
         consensus.hashGenesisBlock = genesis.GetHash();
 
         // Ref: https://en.bitcoin.it/wiki/List_of_address_prefixes
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,38); // 'G'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,63); // 'S'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,68); // 'U'
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,130); // 'u'
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,128);// '5' for uncompressed, 'K','L' for compressed
         // BIP32 pubkey
         base58Prefixes[EXT_PUBLIC_KEY] = {4, 136, 178, 30}; // xpub
@@ -174,7 +170,15 @@ public:
         bech32_hrp = "SKC";
 
         // Note that of those with the service bits flag, most only support a subset of possible options
-        vSeeds.emplace_back("seed.sinkycoin.bitbaba.com"/*, false*/);
+        vSeeds.emplace_back("n1.qidiantop.com"/*, false*/);//coingo.vip
+        vSeeds.emplace_back("n2.qidiantop.com"/*, false*/);
+        vSeeds.emplace_back("n3.qidiantop.com"/*, false*/);
+        vSeeds.emplace_back("n4.qidiantop.com"/*, false*/);
+        vSeeds.emplace_back("n5.qidiantop.com"/*, false*/);
+        vSeeds.emplace_back("n6.qidiantop.com"/*, false*/);
+        vSeeds.emplace_back("n7.qidiantop.com"/*, false*/);
+        vSeeds.emplace_back("n8.qidiantop.com"/*, false*/);
+
 
         //vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
@@ -184,19 +188,8 @@ public:
 
         checkpointData = {
             {
-                {     0, HASH_GENESIS},
-                {  1008, uint256S("0x00000ff673327dcbfbf65f13a594345bafd6804ad08eac1749939d01989a088d")},
-                {  2016, uint256S("0x000005f3b3f9ebddaf6be241619701d3db03b18b165b076862039075e8ab0751")},
-                {  4032, uint256S("0x00000306e714368fd891f1321fd2bcce806189de9b7801d557da5a4ccbc3965a")},
-                {  8064, uint256S("0x000000beee2315d0432228e365dea0c7324ba0e57a00a227dac5b44952204f79")},
-                { 10080, uint256S("0x000001debe0a25b2e017412977e694a67fede7bc38102d2206f441e0a422925a")},
-                { 12096, uint256S("0x0000006f36a44118ee46ebb313c6684c8a22fbbd626a3802e416983d5486cefe")},
-                { 12186, uint256S("0x000000092fcdc8cde04b50adfefa30e856a2058a2c790a51eaf64bdc40f164b8")},
-                { 23702, uint256S("0x0000000352824f5ab9ca70d865d259370897a5dc544c283c43f1ad895d6e1e95")},
-                { 40320, uint256S("0x031aa72752355e65a8e6ad95fe41b82108d2647909f44cf18f8a80bff7856726")},
-                { 40337, uint256S("0x0000018a686b185de39c3a8838c677573cf454c5aecbcd759c56d5afa4471e3b")},
-                { 40484, uint256S("0x0000001099271412bfe557c1d50c9ab936636eebb89517d3a045937ac63bcb36")},
-                { 40485, uint256S("0x0000000bd32ca0f54806e08dc0825fdb9abf833d96864d1e5d474d78399dac11")},
+                {     0, HASH_GENESIS},//coingo.vip
+                //{  1008, uint256S("0x00000ff673327dcbfbf65f13a594345bafd6804ad08eac1749939d01989a088d")},
             }
         };
 
@@ -276,28 +269,24 @@ public:
         genesis = CreateGenesisBlock(1509526800             /*20171101-170000*/
                                      , 1                    /*nonce*/
                                      , 0x207fffff           /*bits*/
-                                     , 0x20000000           /*version*/
+                                     , VERSIONBITS_TOP_BITS /*version*/
                                      , 50 * COIN            /*subsidy*/);
 
         while(false){
-            static FILE * genesis_file = NULL; if (genesis_file == NULL) {genesis_file = fopen("genesis.info", "w");}
             arith_uint256 hash = UintToArith256(genesis.GetHash());
             arith_uint256 target;
             target.SetCompact(0x207fffff);
             if (hash < target){
-                if (genesis_file != NULL){
-                    fprintf(genesis_file, "nonce: %d\npow:%s\nmerkle:%s\n\n"
+                printf("nonce: %d\npow:%s\n%merkle:%s\n\n"
                         , genesis.nNonce
                         , hash.ToString().c_str()
                         , genesis.hashMerkleRoot.ToString().c_str());
-                    fclose(genesis_file); genesis_file = NULL;
-                    exit(0);
-                }
+                break;
             }
             genesis.nNonce++;
         }
 
-        assert(genesis.GetHash() == HASH_GENESIS);
+        assert(genesis.GetHash() == HASH_GENESIS);//coingo.vip
         assert(genesis.hashMerkleRoot == HASH_MERKLEROOT);
         consensus.hashGenesisBlock = genesis.GetHash();
 
@@ -398,23 +387,19 @@ public:
         genesis = CreateGenesisBlock(1509526800            /*20171101-170000*/
                                      , 2                   /*nonce*/
                                      , 0x207fffff          /*bits*/
-                                     , 0x20000000          /*version*/
+                                     , VERSIONBITS_TOP_BITS/*version*/
                                      , 50 * COIN           /*subsidy*/);
 
         while(false){
-            static FILE * genesis_file = NULL; if (genesis_file == NULL) {genesis_file = fopen("genesis.info", "w");}
             arith_uint256 hash = UintToArith256(genesis.GetHash());
             arith_uint256 target;
             target.SetCompact(0x207fffff);
             if (hash < target){
-                if (genesis_file != NULL){
-                    printf("nonce: %d\npow:%s\nmerkle:%s\n\n"
+                printf("nonce: %d\npow:%s\n%merkle:%s\n\n"
                         , genesis.nNonce
                         , hash.ToString().c_str()
                         , genesis.hashMerkleRoot.ToString().c_str());
-                    fclose(genesis_file); genesis_file = NULL;
-                    exit(0);
-                }
+                break;
             }
             genesis.nNonce++;
         }

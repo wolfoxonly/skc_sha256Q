@@ -59,7 +59,7 @@ struct Params {
     /** Block height at which BIP66 becomes active */
     int BIP66Height;
     /** Block height at which nonceOf becomes active */
-    int NonceOfHeight;
+    int NonceOfHeight;//coingo.vip
 
     /**
      * Minimum blocks including miner confirmation of the total of `DifficultyAdjustmentInterval()' blocks in a retargeting period,

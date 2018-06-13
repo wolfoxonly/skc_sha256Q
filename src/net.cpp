@@ -1831,7 +1831,7 @@ void CConnman::ThreadOpenConnections(const std::vector<std::string> connect)
             }
 
             // if we selected an invalid address, restart
-            if (!addr.IsValid() || setConnected.count(addr.GetGroup()) || IsLocal(addr))
+            if (!addr.IsValid() /*|| setConnected.count(addr.GetGroup())*/ || IsLocal(addr))//coingo.vip
                 break;
 
             // If we didn't find an appropriate destination after trying 100 addresses fetched from addrman,

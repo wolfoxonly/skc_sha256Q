@@ -6,19 +6,15 @@
 #include <primitives/block.h>
 
 #include <hash.h>
-#include <versionbits.h>
 #include <tinyformat.h>
 #include <utilstrencodings.h>
 #include <crypto/common.h>
 
 uint256 CBlockHeader::GetHash() const
 {
-    if ((VERSIONBITS_TOP_MASK & nVersion) == VersionBitsTopBits(SHA256Q_HEIGHT)){
-       CPowHashWriter ss(SER_GETHASH, PROTOCOL_VERSION);
-       ss << (*this);
-       return ss.GetHash();
-    }
-    return SerializeHash(*this);
+    CPowHashWriter ss(SER_GETHASH, PROTOCOL_VERSION);
+    ss << (*this);
+    return ss.GetHash();
 }
 
 std::string CBlock::ToString() const

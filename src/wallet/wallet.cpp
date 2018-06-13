@@ -41,8 +41,8 @@ CFeeRate payTxFee(DEFAULT_TRANSACTION_FEE);
 unsigned int nTxConfirmTarget = DEFAULT_TX_CONFIRM_TARGET;
 bool bSpendZeroConfChange = DEFAULT_SPEND_ZEROCONF_CHANGE;
 bool fWalletRbf = DEFAULT_WALLET_RBF;
-OutputType g_address_type = OUTPUT_TYPE_NONE;
-OutputType g_change_type = OUTPUT_TYPE_NONE;
+OutputType g_address_type = OUTPUT_TYPE_LEGACY;//coingo.vip
+OutputType g_change_type = OUTPUT_TYPE_LEGACY;
 bool g_wallet_allow_fallback_fee = true; //<! will be defined via chainparams
 
 const char * DEFAULT_WALLET_DAT = "wallet.dat";
