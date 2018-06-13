@@ -1,0 +1,14 @@
+/SDKs/
+/SDKs
+/sources/
+/sources
+/sdk-sources/
+/sdk-sources
+work/
+built/
+config.site
+x86_64*
+i686*
+mips*
+arm*
+aarch64*
